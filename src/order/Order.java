@@ -16,6 +16,9 @@ public class Order {
         statment = null;
     }
 
+
+
+
     public Order(String orderID, User supervisor, String statment) {
         this.orderID = orderID;
         this.supervisor = supervisor;
