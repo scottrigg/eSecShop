@@ -1,5 +1,7 @@
 package usr;
 
+import support.UserNotFoundException;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -29,13 +31,11 @@ public class UserCatalog {
             cnf.printStackTrace();
         }
     }
-    public ArrayList<User> userLocator(String userName){
-    }
 
     public void save(){
         try {
             FileOutputStream fos = new FileOutputStream(catalogID+".txt");
-            ObjectOutputStream oos = new ObjectInputStream(fos);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
             for (User i : cataLog) {
                 oos.writeObject(i);
             }
@@ -47,6 +47,23 @@ public class UserCatalog {
         catch (IOException ioe){
             ioe.printStackTrace();
         }
+    }
+
+    public boolean register(User usr){
+        if (cataLog.size() < 100) {
+            cataLog.add(usr);
+            return true;
+        }
+        else return false;
+    }
+
+    public String findUser(String id) throws UserNotFoundException {
+        for (User i :cataLog) {
+            if (i.getUserID().equals(id)){
+                return i.toString();
+            }
+        }
+        throw new UserNotFoundException(id);
     }
 
 }

@@ -30,6 +30,14 @@ public class User implements Serializable {
         status = st;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     public String getUserName(){
         return userName;
     }
@@ -87,9 +95,8 @@ public class User implements Serializable {
     }
 
     public boolean equals(Object obj) {
-        if (obj.getClass() == this.getClass()) {
-            return obj.userID == this.userID;
-        }
-        else return false;
+        if (!(obj instanceof User)) return false;
+        User user = (User) obj;
+        return user.userID == this.userID;
     }
 }
