@@ -2,7 +2,7 @@ package usr;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
-import sun.util.locale.provider.FallbackLocaleProviderAdapter;
+import support.NotLogInException;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -17,10 +17,16 @@ public class User implements Serializable {
     private boolean status;
 
     public User(){
-        userName = "Guest";
-        setPassWord("Default");
-        userID = "0";
         status = true;
+        userName = "Guest";
+        try {
+            setPassWord("Default");
+        }
+        catch (NotLogInException nli)
+        {
+            nli.printStackTrace();
+        }
+        userID = "0";
     }
 
     public User(String un, String pw, String id, boolean st){
@@ -46,9 +52,12 @@ public class User implements Serializable {
         userName = un;
     }
 
-    public void setPassWord(String pw) {
-        byte [] data = pw.getBytes();
-        passWord = (new BASE64Encoder()).encodeBuffer(data);
+    public void setPassWord(String pw) throws NotLogInException {
+        if (status) {
+            byte[] data = pw.getBytes();
+            passWord = (new BASE64Encoder()).encodeBuffer(data);
+        }
+        else throw new NotLogInException();
     }
 
     public String getEnPW(){

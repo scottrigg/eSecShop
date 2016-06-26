@@ -3,6 +3,7 @@ package order;
 import shop.Product;
 import support.PayMethod;
 import usr.Customer;
+import usr.Employee;
 import usr.User;
 
 import java.text.SimpleDateFormat;
@@ -40,13 +41,13 @@ public class ShopOrder extends Order{
         status.add(msg+usr.getUserID()+currentDate());
     }
 
-    public void confirm(String id, User supervisor){
+    public void confirm(String id, Employee supervisor){
         super.setOrderID(id);
         super.setSupervisor(supervisor);
         update("confirmed",supervisor);
     }
 
-    public void shipped(DeliverOrder DO, User logistics){
+    public void shipped(DeliverOrder DO, Employee logistics){
         delivery = DO;
         update("shipped",logistics);
     }
