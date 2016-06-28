@@ -2,7 +2,6 @@ import usr.User;
 import usr.UserCatalog;
 import usr.UserInterface;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +18,7 @@ public class test {
 //        }
 //        user.save();
         UserCatalog u2 = new UserCatalog("0");
-        ArrayList<User> exam = u2.getCataLog();
+        ArrayList<User> exam = u2.getCatalog();
         for (User i: exam){
             System.out.println(i);
         }

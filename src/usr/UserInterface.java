@@ -33,16 +33,16 @@ public class UserInterface {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Welcome to E-Security system!");
 
-        System.out.println("Please enter your userId:");
+        System.out.println("Please enter your User Name:");
         String userId=br.readLine();
         System.out.println("Please enter your password:");
         String pass = br.readLine();
         UserCatalog uc = new UserCatalog("0");
         while (true){
             try{
-                User user = uc.findUser(userId);
+                User user = uc.userLocator(userId);
                 if (user.logIn(pass)) {
-                    currentUser = user;
+                    //currentUser = user;
                     break;
                 }
                 else

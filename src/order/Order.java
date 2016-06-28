@@ -10,8 +10,8 @@ public class Order {
     private User supervisor;
     private String statment;
 
-    public Order(){
-        orderID = "0";
+    public Order(String orderID){
+        orderID = orderID;
         supervisor = null;
         statment = null;
     }
