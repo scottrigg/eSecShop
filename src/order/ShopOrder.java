@@ -1,6 +1,6 @@
 package order;
 
-import shop.Product;
+import productData.Product;
 import support.PayMethod;
 import usr.Customer;
 import usr.Employee;
