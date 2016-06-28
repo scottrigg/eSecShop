@@ -1,11 +1,10 @@
 package productData;
 
-import java.util.ArrayList;
-
 /**
  * Created by mac on 16/6/27.
  */
-public class SecurityCamera {
-    private ArrayList<Product> catalog;
-
+public class SecurityCamera extends ProductCatalog {
+    public SecurityCamera(){
+        super("SecurityCamera");
+    }
 }

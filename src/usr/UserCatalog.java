@@ -1,5 +1,6 @@
 package usr;
 
+import support.FileAccessable;
 import support.UserNotFoundException;
 
 import java.io.*;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by mac on 16/6/25.
  */
-public class UserCatalog {
+public class UserCatalog implements FileAccessable{
     private String catalogID;
     private ArrayList<User> cataLog;
 
