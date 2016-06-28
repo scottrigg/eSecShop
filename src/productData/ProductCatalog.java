@@ -86,6 +86,14 @@ public abstract class ProductCatalog implements FileAccessable{
         save();
     }
 
+    public void rmProduct(String ID) throws ProductNotFoundException{
+        Product p=productLocater(ID);
+        if (catalog.remove(p)) {
+            throw new ProductNotFoundException(ID);
+        }
+        save();
+    }
+
     @Override
     public String toString() {
         return catalog.toString();
