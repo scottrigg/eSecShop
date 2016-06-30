@@ -9,7 +9,7 @@ import usr.*;
  * Created by mac on 16/6/28.
  */
 public class DataManager {
-    private UserCatalog currentUser;
+    protected Catalog currentCatalog;
     private OrderCatalog currentOrder;
 
     public DataManager(){
@@ -17,32 +17,13 @@ public class DataManager {
         currentOrder = new OrderCatalog();
     }
 
-    private void register(User usr){
-        if (!currentUser.register(usr))
-            currentUser = new UserCatalog();
-    }
 
-    public void newEmployee(User ne, User hr)throws NoAccessPermitException{
-        if (!(hr instanceof humanResource))
-            throw new NoAccessPermitException("Employee Data");
-        else
-            register(ne);
 
-    }
 
-    public void newCustomer(User ne)throws NoAccessPermitException{
-        if (!(ne instanceof Customer))
-            throw new NoAccessPermitException("Customer Data");
-        else
-            register(ne);
-    }
 
-    public User userLocator(String ID) throws UserNotFoundException{
-        String catalogID = ID.substring(0,ID.length()-2);
-        String userID = ID.substring(ID.length()-2,ID.length());
-        UserCatalog uc = new UserCatalog(catalogID);
-        return uc.userLocator(userID);
-    }
+
+
+
 
     public void newOrder(Order order){
         if (!currentOrder.newOrder(order))

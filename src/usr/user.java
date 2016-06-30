@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * Created by mac on 16/6/25.
  */
-public class User implements Serializable {
+public abstract class User implements Serializable {
     private String userID;
     private String userName;
     private String passWord;
