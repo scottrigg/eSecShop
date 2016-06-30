@@ -11,13 +11,15 @@ public class Product implements Serializable{
     private double price;
     private int stock;
     private String statement;
+    private String type;
 
-    public Product(String productID, String name, double price, int stock, String statement) {
+    public Product(String productID, String name, double price, int stock, String statement, String pt) {
         this.productID = productID;
         this.name = name;
         this.price = price;
         this.stock = stock;
         this.statement = statement;
+        this.type = pt;
     }
 
     public String getProductID() {
@@ -56,6 +58,14 @@ public class Product implements Serializable{
         this.statement = statement;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
     @Override
     public String toString() {
         return "Product:" + productID
@@ -66,7 +76,7 @@ public class Product implements Serializable{
     }
 
     public Product clone() {
-        return new Product(this.productID,this.name,this.price, this.stock, this.statement);
+        return new Product(this.productID,this.name,this.price, this.stock, this.statement, this.type);
     }
 
     @Override

@@ -6,6 +6,8 @@ import support.RepeatProductException;
 import usr.Manager;
 import usr.User;
 
+import java.util.ArrayList;
+
 /**
  * Created by mac on 16/6/29.
  */
@@ -48,6 +50,13 @@ public class ProdcutManager {
                 p.rmProduct(ID);
 
         }
+    }
+
+    public static ArrayList<Product> browseProduct()  {
+        ArrayList<Product> result = (new SecurityCamera()).browseProduct();
+        result.addAll((new DVR()).browseProduct());
+        result.addAll((new Accessories()).browseProduct());
+        return result;
     }
 
     private static void isAccessible(User usr, String ID) throws NoAccessPermitException {

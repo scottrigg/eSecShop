@@ -1,5 +1,7 @@
 package usr;
 
+import order.Order;
+import productData.Product;
 import support.Address;
 import support.PayMethod;
 
@@ -13,19 +15,22 @@ public class Customer extends User {
     private String emailAddress;
     private ArrayList<Address> addressBook;
     private ArrayList<PayMethod> payBook;
+    private ArrayList<Order> orderHistory;
 
     public Customer() {
         super();
         emailAddress = null;
         addressBook =  new ArrayList<Address>();
         payBook = new ArrayList<PayMethod>();
+        orderHistory = new ArrayList<Order>();
     }
 
-    public Customer(String un, String pw, String id, boolean st, String emailAddress, ArrayList<Address> addressBook, ArrayList<PayMethod> payBook) {
+    public Customer(String un, String pw, String id, boolean st, String emailAddress, ArrayList<Address> addressBook, ArrayList<PayMethod> payBook, ArrayList<Order> orderHistory) {
         super(un, pw, id, st);
         this.emailAddress = emailAddress;
         this.addressBook = addressBook;
         this.payBook = payBook;
+        this.orderHistory = orderHistory;
     }
 
     public String getEmailAddress() {
@@ -42,6 +47,14 @@ public class Customer extends User {
 
     public String getDefaultPayment(){
         return payBook.get(0).toString();
+    }
+
+    public ArrayList<Order> getOrderHistory() {
+        return orderHistory;
+    }
+
+    public void addOrderHistory(Order o){
+        orderHistory.add(o);
     }
 
     public ArrayList<String> viewAllAddress(){

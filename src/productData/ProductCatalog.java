@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by mac on 16/6/27.
  */
-public abstract class ProductCatalog implements FileAccessable{
+public class ProductCatalog implements FileAccessable{
     private ArrayList<Product> catalog;
     private String name;
 
@@ -76,6 +76,7 @@ public abstract class ProductCatalog implements FileAccessable{
     }
 
     public void newProduct(Product np) throws RepeatProductException{
+        np.setType(name);
         for(Product i:catalog){
             if (i.equals(np)) {
                 throw new RepeatProductException(np);
