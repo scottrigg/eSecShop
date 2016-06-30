@@ -2,27 +2,28 @@ package order;
 
 import usr.User;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * Created by mac on 16/6/26.
  */
 public class Order {
     private String orderID;
-    private User supervisor;
-    private String statment;
+    private User operator;
+    protected ArrayList<String> status;
 
     public Order(String orderID){
-        orderID = orderID;
-        supervisor = null;
-        statment = null;
+        this.orderID = orderID;
+        operator = null;
+
     }
 
-
-
-
-    public Order(String orderID, User supervisor, String statment) {
+    public Order(String orderID, User supervisor, ArrayList<String> status) {
         this.orderID = orderID;
-        this.supervisor = supervisor;
-        this.statment = statment;
+        this.operator = supervisor;
+        this.status = status;
     }
 
     public String getOrderID() {
@@ -34,18 +35,46 @@ public class Order {
     }
 
     public String getSupervisor() {
-        return supervisor.toString();
+        return operator.toString();
     }
 
     public void setSupervisor(User supervisor) {
-        this.supervisor = supervisor;
+        this.operator = supervisor;
     }
 
-    public String getStatment() {
-        return statment;
+    public ArrayList<String> getStatus() {
+        return status;
     }
 
-    public void setStatment(String statment) {
-        this.statment = statment;
+    public void setStatus(ArrayList<String> status) {
+        this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Order: "
+                + orderID + ','
+                + operator.getUserID() + '\n'
+                + status + '\n';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+
+        Order order = (Order) o;
+
+        return orderID != null ? orderID.equals(order.orderID) : order.orderID == null;
+
+    }
+
+    protected String currentDate(){
+        return (new SimpleDateFormat("MM.dd")).format(new Date());
+    }
+
+    public void update(String msg, User usr){
+        status.add(msg+usr.getUserID()+currentDate());
+    }
+
 }

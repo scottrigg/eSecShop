@@ -1,6 +1,8 @@
 package order;
 
 import productData.Product;
+import support.Address;
+import support.NoAccessPermitException;
 import support.PayMethod;
 import usr.Customer;
 import usr.Employee;
@@ -18,46 +20,82 @@ public class ShopOrder extends Order{
     private ArrayList<Product> orderList;
     private PayMethod payment;
     private DeliverOrder delivery;
-    private ArrayList<String> status;
 
-    public ShopOrder(ArrayList<Product> orderList, PayMethod payment) {
-        super();
+
+    public ShopOrder(String ID, ArrayList<Product> orderList, PayMethod payment, DeliverOrder delO) {
+        super(ID);
         this.orderList = orderList;
         this.payment = payment;
-        status = new ArrayList<String>();
-        status.add("Wait for confirm,system,"+currentDate());
+        this.delivery = delO;
+        super.status = new ArrayList<String>();
+        super.status.add("Wait for confirm,system,"+currentDate());
     }
 
-    public ShopOrder(String orderID, User supervisor, String statment, Customer customer, ArrayList<Product> orderList, PayMethod payment, DeliverOrder delivery, ArrayList<String> status) {
-        super(orderID, supervisor, statment);
+    public ShopOrder(String orderID, User supervisor, Customer customer, ArrayList<Product> orderList, PayMethod payment, DeliverOrder delivery, ArrayList<String> status) {
+        super(orderID, supervisor, status);
         this.customer = customer;
         this.orderList = orderList;
         this.payment = payment;
         this.delivery = delivery;
-        this.status = status;
     }
 
-    public void update(String msg, User usr){
-        status.add(msg+usr.getUserID()+currentDate());
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void confirm(String id, Employee supervisor){
-        super.setOrderID(id);
-        super.setSupervisor(supervisor);
-        update("confirmed",supervisor);
+    public ArrayList<Product> getOrderList() {
+        return (ArrayList<Product>) orderList.clone();
     }
 
-    public void shipped(DeliverOrder DO, Employee logistics){
-        delivery = DO;
-        update("shipped",logistics);
+    public void setOrderList(ArrayList<Product> orderList) {
+        this.orderList = orderList;
     }
 
-    public void delivered(User logistics){
-        update("delivered",logistics);
+    public PayMethod getPayment() {
+        return payment;
     }
 
-    private String currentDate(){
-        return (new SimpleDateFormat("MM.dd")).format(new Date());
+    public DeliverOrder getDelivery() {
+        return delivery;
     }
+
+    public void setDelivery(DeliverOrder delivery) {
+        this.delivery = delivery;
+    }
+
+    @Override
+    public String toString() {
+        return "Shopping" + super.toString()
+                + customer.getUserName() + customer.getUserID() + '\n'
+                + payment.toString() + '\n'
+                + delivery.getOrderID();
+
+    }
+
+    public int total() {
+        int result = 0;
+        for(Product i:orderList){
+            result += i.getPrice();
+        }
+        return result;
+    }
+
+
+    //    public void confirm(String id, Employee supervisor){
+//        super.setOrderID(id);
+//        super.setSupervisor(supervisor);
+//        update("confirmed",supervisor);
+//    }
+//
+//    public void shipped(DeliverOrder DO, Employee logistics){
+//        delivery = DO;
+//        update("shipped",logistics);
+//    }
+//
+//    public void delivered(User logistics){
+//        update("delivered",logistics);
+//    }
+
+
 
 }

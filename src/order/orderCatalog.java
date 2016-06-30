@@ -45,4 +45,9 @@ public class OrderCatalog extends Catalog {
         }
         throw new OrderNotFoundException(id);
     }
+
+    @Override
+    public String toString() {
+        return catalogID+":"+catalog;
+    }
 }

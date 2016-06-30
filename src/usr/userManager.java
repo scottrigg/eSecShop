@@ -50,4 +50,8 @@ public class UserManager extends DataManager{
         }
     }
 
+    public void logOut(User usr){
+        usr.logOut();
+    }
+
 }

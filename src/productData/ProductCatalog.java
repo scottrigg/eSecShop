@@ -23,7 +23,6 @@ public abstract class ProductCatalog implements FileAccessable{
             while (true){
                 catalog.add((Product)ois.readObject());
             }
-
         }
         catch (EOFException eofe){
             System.out.println(("File \""+Name+".txt complete\""));

@@ -102,6 +102,6 @@ public class Address implements Serializable {
                 + city + ","
                 + state + ","
                 + zipCode + ","
-                + deliverInstruction + ',';
+                + deliverInstruction + '\n';
     }
 }
